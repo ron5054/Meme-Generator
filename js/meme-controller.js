@@ -38,12 +38,10 @@ function renderMeme(image, text) {
             const topTextY = fontSize + 10
             gCtx.fillText(line.txt, line.x, line.y)
             gCtx.strokeText(line.txt, line.x, line.y)
-
+            console.log(line, idx)
         })
 
     }
-    // gCtx.drawImage(image, 0, 0, gElCanvas.width, gElCanvas.height)
-
 }
 
 
