@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+
+
+.main-header {
+    background-color: rgb(187, 187, 187);
+    color: aquamarine;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Lato', sans-serif;
+
+}
+
+
+.main-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header-container .logo a {
+    color: aquamarine;
+    text-decoration: none;
+}
+
+.main-nav {
+    display: flex;
+    list-style-type: none;
+}
+
+
+.main-nav li button {
+    margin-inline-start: 30px;
+    text-decoration: none;
+    color: aquamarine;
+    font-size: 2em;
+    font-weight: 900;
+}
+
+.canvas-container {
+    border: 1px solid black;
+}
+
+.gallery-container img {
+    height: 300px;
+    width: 300px;
+}

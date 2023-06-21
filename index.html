@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>My MEME Generator</title>
+</head>
+
+<body onload="onInit()">
+    <header class="main-header full main-layout">
+        <div class="main-header-container">
+            <h1 class="logo"><a href="index.html">MyMemeGenerator</a></h1>
+            <nav class="main-nav-container">
+                <ul class="main-nav">
+                    <li><button class="nav-btn">gallery</button></li>
+                    <li><button class="nav-btn">dont know yet</button></li>
+                    <li><button class="nav-btn">dont know yet</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="gallery-container">
+    </section>
+    <section class="meme-generator">
+        <canvas class="canvas-container" width="500px" height="500px"></canvas>
+    </section>
+    <div class="inputs">
+        Write Something <input type="text" id="top-text">
+        <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
+
+        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
+        <button class="btn" onclick="onUploadImg()">
+            Upload Image from Canvas and Share on Facebook
+        </button>
+    </div>
+
+
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/galley-service.js"></script>
+    <script src="js/meme-controller.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/meme-utils.js"></script>
+</body>
+
+</html>
