@@ -19,3 +19,8 @@ function _createImages() {
     console.log(gImgs)
 }
 
+function setImg(imageId) {
+    const meme = getMeme()
+    meme.selectedImgId = imageId
+    renderMeme()
+}

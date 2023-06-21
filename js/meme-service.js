@@ -5,22 +5,59 @@ var gMeme = {
     lines: [
         {
             txt: 'I sometimes eat Falafel',
-            size: 20,
+            size: 30,
             color: 'red',
-            x: 150,
+            x: 250,
             y: 150
         },
-        {
-            txt: 'I sometimes eat Falafel2',
-            size: 20,
-            color: 'red',
-            x: 150,
-            y: 300
-        }
     ]
 }
 
-
 function getMeme() {
     return gMeme
+}
+
+function setLineTxt(text, selectedLine) {
+    const meme = getMeme()
+    meme.lines[selectedLine].txt = text
+    renderMeme()
+}
+
+function onhandleInput() {
+    const meme = getMeme()
+    const text = document.getElementById("top-text").value
+    const selectedLine = meme.selectedLineIdx
+    setLineTxt(text, selectedLine)
+}
+
+function setFontColor(color) {
+    const meme = getMeme()
+    meme.lines[meme.selectedLineIdx].color = color
+}
+
+function setFontSize(fontSize) {
+    const meme = getMeme()
+    meme.lines[meme.selectedLineIdx].size += fontSize
+    console.log(meme.lines[meme.selectedLineIdx].size);
+    renderMeme()
+    // if (meme.lines[gSelectedLine].size < 10 || meme.lines[gSelectedLine].size > 48) return
+}
+
+function addLine() {
+    const meme = getMeme()
+    const line = {
+        txt: 'I sometimes eat Falafel 2',
+        size: 30,
+        color: 'green',
+        x: 250,
+        y: 350
+    }
+    meme.lines.push(line)
+    renderMeme()
+}
+
+function switchLine() {
+    const meme = getMeme()
+    meme.selectedLineIdx = meme.selectedLineIdx === 0 ? 1 : 0
+    console.log(meme.selectedLineIdx)
 }

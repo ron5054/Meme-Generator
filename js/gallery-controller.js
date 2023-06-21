@@ -3,7 +3,6 @@
 
 function onInit() {
     renderGallery()
-    // initCanvas()
     onInitEditor()
 }
 
@@ -11,8 +10,19 @@ function renderGallery() {
     strHTMLs = ''
     const images = getImages()
     var strHTMLs = images.map(image => `
-    <img src="/img/${image.id}.jpg" alt="">`)
+    <img src="/img/${image.id}.jpg" alt="" onclick="onSetImg(${image.id})">`)
 
     document.querySelector('.gallery-container').innerHTML = strHTMLs.join('')
 
 }
+
+function onSetImg(imageId) {
+    setImg(imageId)
+    document.querySelector('.gallery-container').classList.add('hide')
+    document.querySelector('.canvas-container').classList.remove('hide')
+}
+
+function onShowGallery() {
+    document.querySelector('.gallery-container').classList.remove('hide')
+}
+

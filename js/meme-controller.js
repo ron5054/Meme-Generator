@@ -2,14 +2,13 @@
 let gElCanvas
 let gCtx
 const topTextInput = document.getElementById('top-text')
-// topTextInput.addEventListener('input', generateMeme)
 
 
-function initCanvas() {
-    gElCanvas = document.querySelector('.canvas-container')
-    gCtx = gElCanvas.getContext('2d')
-    resizeCanvas()
-}
+// function initCanvas() {
+//     gElCanvas = document.querySelector('.canvas-container')
+//     gCtx = gElCanvas.getContext('2d')
+//     resizeCanvas()
+// }
 
 function onInitEditor() {
     gElCanvas = document.querySelector('.canvas-container')
@@ -18,17 +17,17 @@ function onInitEditor() {
     renderMeme()
 }
 
-function renderMeme(image, text) {
+function renderMeme() {
     const meme = getMeme()
     const elImg = new Image() // Create a new html img element
     elImg.src = `img/${meme.selectedImgId}.jpg` // Send a network req to get that image, define the img src
     // When the image ready draw it on the canvas
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-        const fontSize = 48
+        const fontSize = meme.lines[0].size
         const fontFamily = 'Impact'
         gCtx.font = `${fontSize}px ${fontFamily}`
-        gCtx.fillStyle = 'white'
+        gCtx.fillStyle = meme.lines[0].color
         gCtx.strokeStyle = 'black'
         gCtx.lineWidth = 2
         gCtx.textAlign = 'center'
@@ -85,5 +84,21 @@ function drawImg2() {
 
 function onClearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+}
+
+function onSetFontColor(color) {
+    setFontColor(color)
+}
+
+function onSetFontSize(fontSize) {
+    setFontSize(fontSize)
+}
+
+function onAddLine() {
+    addLine()
+}
+
+function onSwitchLine() {
+    switchLine()
 }
 

@@ -14,7 +14,7 @@
             <h1 class="logo"><a href="index.html">MyMemeGenerator</a></h1>
             <nav class="main-nav-container">
                 <ul class="main-nav">
-                    <li><button class="nav-btn">gallery</button></li>
+                    <li><button class="nav-btn" onclick="onShowGallery()">gallery</button></li>
                     <li><button class="nav-btn">dont know yet</button></li>
                     <li><button class="nav-btn">dont know yet</button></li>
                 </ul>
@@ -24,18 +24,22 @@
     <section class="gallery-container">
     </section>
     <section class="meme-generator">
+
         <canvas class="canvas-container" width="500px" height="500px"></canvas>
+
+        <div class="inputs">
+            Write Something <input type="text" id="top-text" oninput="onhandleInput()"> Choose Font Color <input
+                type="color" onchange="onSetFontColor(value)"> <button onclick="onSetFontSize(5)">Bigger
+                Font</button><button onclick="onSetFontSize(-5)">Smaller Font</button> <button onclick="onAddLine()">Add
+                Line</button> <button onclick="onSwitchLine()">Switch Line</button>
+            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
+
+            <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
+            <button class="btn" onclick="onUploadImg()">
+                Upload Image from Canvas and Share on Facebook
+            </button>
+        </div>
     </section>
-    <div class="inputs">
-        Write Something <input type="text" id="top-text">
-        <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
-
-        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
-        <button class="btn" onclick="onUploadImg()">
-            Upload Image from Canvas and Share on Facebook
-        </button>
-    </div>
-
 
     <script src="js/gallery-controller.js"></script>
     <script src="js/galley-service.js"></script>
