@@ -4,7 +4,6 @@ let gCtx
 
 function onInitEditor() {
     gElCanvas = document.querySelector('.canvas-el')
-    console.log(gElCanvas);
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
     renderMeme()
@@ -12,6 +11,7 @@ function onInitEditor() {
 
 
 function renderMeme() {
+    setFocusToInput()
     const meme = getMeme()
     const elImg = new Image() // Create a new html img element
     elImg.src = `img/${meme.selectedImgId}.jpg` // Send a network req to get that image, define the img src
@@ -19,7 +19,6 @@ function renderMeme() {
     elImg.onload = () => {
         //draw the img on canvas
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-        let selectedLine = meme.lines[meme.selectedLineIdx]
 
         meme.lines.forEach((line, idx) => {
             const fontFamily = 'Impact'
@@ -29,23 +28,21 @@ function renderMeme() {
             gCtx.strokeStyle = 'black'
             gCtx.textAlign = 'center' // line.align
             gCtx.fillStyle = line.color
-            // const topTextX = gElCanvas.width / 2
-            // const topTextY = fontSize + 10
             gCtx.fillText(line.txt, line.x, line.y)
             gCtx.strokeText(line.txt, line.x, line.y)
 
             if (idx === meme.selectedLineIdx) {
                 // Draw frame around the selected line
-                const frameWidth = gElCanvas.width - 20;
-                const frameHeight = fontSize + 10;
-                const frameX = gElCanvas.width / 2;
-                const frameY = line.y - fontSize;
+                const frameWidth = gElCanvas.width - 20
+                const frameHeight = fontSize + 10
+                const frameX = gElCanvas.width / 2
+                const frameY = line.y - fontSize
 
-                gCtx.beginPath();
-                gCtx.rect(frameX - frameWidth / 2, frameY, frameWidth, frameHeight);
-                gCtx.strokeStyle = 'red';
-                gCtx.lineWidth = 2;
-                gCtx.stroke();
+                gCtx.beginPath()
+                gCtx.rect(frameX - frameWidth / 2, frameY, frameWidth, frameHeight)
+                gCtx.strokeStyle = 'grey'
+                gCtx.lineWidth = 2
+                gCtx.stroke()
             }
 
         })
@@ -53,12 +50,24 @@ function renderMeme() {
     }
 }
 
+function clearFrameFromCanvas() {
+    const meme = getMeme()
+    meme.selectedLineIdx = -1
+    renderMeme()
+}
+
+// function onDownloadImg(elLink) {
+//     clearFrameFromCanvas()
+//     setTimeout((downloadImg(elLink)), 4000);
+// }
 
 
 function downloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
+
 }
+
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
@@ -108,7 +117,6 @@ function onSwitchLine() {
     const meme = getMeme()
     switchLine()
     let selectedLine = meme.selectedLineIdx
-    console.log(selectedLine);
     document.getElementById("text-input").value = meme.lines[selectedLine].txt
     renderMeme()
 }
@@ -119,4 +127,9 @@ function onhandleInput() {
     const selectedLine = meme.selectedLineIdx
     setLineTxt(text, selectedLine)
     renderMeme()
+}
+
+function setFocusToInput() {
+    var input = document.getElementById("text-input")
+    input.focus()
 }

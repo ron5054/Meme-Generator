@@ -41,9 +41,9 @@ function addLine() {
     const meme = getMeme()
     if (meme.lines.length >= 2) return
     const line = {
-        txt: 'I sometimes eat Falafel 2',
+        txt: '',
         size: 30,
-        color: 'green',
+        color: 'white',
         x: 250,
         y: 350
     }

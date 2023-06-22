@@ -35,21 +35,23 @@
         <div class="controls">
 
             <section>
-                <input type="text" id="text-input" placeholder="Write Something" oninput="onhandleInput()">
-                Choose Font Color <input type="color" value="#ffffff" oninput="onSetFontColor(value) ">
+                <input class="txt-input" type="text" id="text-input" placeholder="Write Something"
+                    oninput="onhandleInput()">
+                Color <input class="color-btn" type="color" value="#ffffff" oninput="onSetFontColor(value) ">
             </section>
 
             <section>
-                <button onclick="onSetFontSize(5)">Bigger Font</button>
-                <button onclick="onSetFontSize(-5)">Smaller Font</button>
-                <button onclick="onAddLine()">Add Line</button>
-                <button onclick="onSwitchLine()">Switch Line</button>
+                <button class="ctrl-btn" onclick="onSetFontSize(5)">+ Font</button>
+                <button class="ctrl-btn" onclick="onSetFontSize(-5)">- Font</button>
+                <button class="ctrl-btn" onclick="onAddLine()">Add Line</button>
+                <button class="ctrl-btn" onclick="onSwitchLine()">Switch Line</button>
             </section>
 
             <section>
-                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
-                <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
-                <button class="btn" onclick="onUploadImg()"> Share on Facebook</button>
+                <!-- <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" /> -->
+                <button class="ctrl-btn" onclick="clearFrameFromCanvas()">remove frame before download</button>
+                <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
+                <!-- <button class="btn" onclick="onUploadImg()"> Share on Facebook</button> -->
             </section>
 
         </div>

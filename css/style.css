@@ -22,6 +22,7 @@
 .main-header-container .logo a {
     color: lightseagreen;
     text-decoration: none;
+    padding: 10px;
 }
 
 .main-nav {
@@ -35,13 +36,28 @@
     text-decoration: none;
     color: lightseagreen;
     font-size: 2em;
-    font-weight: 900;
+    font-weight: 100;
+    margin-inline-end: 30px;
+    border: none;
+    background: none;
+    cursor: pointer;
+
 }
 
 .canvas-container {
-    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 500px;
     height: 500px;
+}
+
+.gallery-container {
+
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-block-start: 10px;
+
 }
 
 .gallery-container img {
@@ -59,9 +75,50 @@
 
 
 .meme-generator {
+    margin-block-start: 50px;
     display: flex;
+    justify-content: center;
 }
 
 .hide {
     display: none;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.ctrl-btn {
+    margin-top: 5px;
+    font-size: 1em;
+    color: aliceblue;
+    background-color: rgb(120, 120, 120);
+    margin-inline-end: 3px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+.txt-input {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 1px solid lightseagreen;
+    height: 30px;
+    font-size: 1.3em;
+}
+
+.color-btn {
+    border-radius: 50%;
+    border: none;
+    height: 24px;
+    width: 24px;
+}
+
+@media screen and (max-width:780px) {
+    .meme-generator {
+        flex-direction: column;
+    }
 }
