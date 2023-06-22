@@ -48,6 +48,10 @@
     cursor: pointer;
 }
 
+.meme-generator {
+    display: flex;
+}
+
 .hide {
     display: none;
 }

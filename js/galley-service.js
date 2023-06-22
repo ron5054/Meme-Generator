@@ -1,5 +1,5 @@
 'use strict'
-var gImgs = []
+const gImgs = []
 
 function getImages() {
     var images = gImgs
@@ -7,14 +7,15 @@ function getImages() {
 }
 _createImages()
 function _createImages() {
+    const images = getImages()
     for (let i = 0; i < 18; i++) {
         const id = (i + 1)
         const img = {
-            id: id,
+            id,
             url: `img/${id}.jpg`,
             keywords: []
         }
-        gImgs.push(img)
+        images.push(img)
     }
     console.log(gImgs)
 }

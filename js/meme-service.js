@@ -4,11 +4,11 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I sometimes eat Falafel',
+            txt: '',
             size: 30,
-            color: 'red',
+            color: 'white',
             x: 250,
-            y: 150
+            y: 100
         },
     ]
 }
@@ -25,7 +25,7 @@ function setLineTxt(text, selectedLine) {
 
 function onhandleInput() {
     const meme = getMeme()
-    const text = document.getElementById("top-text").value
+    const text = document.getElementById("text-input").value
     const selectedLine = meme.selectedLineIdx
     setLineTxt(text, selectedLine)
 }

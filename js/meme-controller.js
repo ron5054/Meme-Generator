@@ -1,14 +1,6 @@
 'use strict'
 let gElCanvas
 let gCtx
-const topTextInput = document.getElementById('top-text')
-
-
-// function initCanvas() {
-//     gElCanvas = document.querySelector('.canvas-container')
-//     gCtx = gElCanvas.getContext('2d')
-//     resizeCanvas()
-// }
 
 function onInitEditor() {
     gElCanvas = document.querySelector('.canvas-container')
@@ -24,20 +16,21 @@ function renderMeme() {
     // When the image ready draw it on the canvas
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-        const fontSize = meme.lines[0].size
+
+        const fontSize = meme.lines[meme.selectedLineIdx].size
         const fontFamily = 'Impact'
         gCtx.font = `${fontSize}px ${fontFamily}`
-        gCtx.fillStyle = meme.lines[0].color
+        gCtx.fillStyle = meme.lines[meme.selectedLineIdx].color
         gCtx.strokeStyle = 'black'
         gCtx.lineWidth = 2
         gCtx.textAlign = 'center'
 
-        meme.lines.forEach((line, idx) => {
-            const topTextX = gElCanvas.width / 2
-            const topTextY = fontSize + 10
+        meme.lines.forEach(line => {
+            // const topTextX = gElCanvas.width / 2
+            // const topTextY = fontSize + 10
             gCtx.fillText(line.txt, line.x, line.y)
             gCtx.strokeText(line.txt, line.x, line.y)
-            console.log(line, idx)
+
         })
 
     }
@@ -55,7 +48,6 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetHeight
 }
 
-///////////////////////////////////////////////////////////////
 function onImgInput(ev) {
     loadImageFromInput(ev, renderImg)
 }
@@ -73,14 +65,6 @@ function loadImageFromInput(ev, onImageReady) {
     reader.readAsDataURL(ev.target.files[0])
 }
 
-function drawImg2() {
-    const elImg = new Image() // Create a new html img element
-    elImg.src = 'img/1.jpg' // Send a network req to get that image, define the img src
-    // When the image ready draw it on the canvas
-    elImg.onload = () => {
-        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-    }
-}
 
 function onClearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)

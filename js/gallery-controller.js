@@ -19,10 +19,11 @@ function renderGallery() {
 function onSetImg(imageId) {
     setImg(imageId)
     document.querySelector('.gallery-container').classList.add('hide')
-    document.querySelector('.canvas-container').classList.remove('hide')
+    document.querySelector('.meme-generator').classList.remove('hide')
 }
 
 function onShowGallery() {
     document.querySelector('.gallery-container').classList.remove('hide')
+    document.querySelector('.meme-generator').classList.add('hide')
 }
 
