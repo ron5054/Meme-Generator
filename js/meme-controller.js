@@ -1,6 +1,7 @@
 'use strict'
 let gElCanvas
 let gCtx
+let gUploadedImg = null
 
 function onInitEditor() {
     gElCanvas = document.querySelector('.canvas-el')
@@ -13,12 +14,14 @@ function onInitEditor() {
 function renderMeme() {
     setFocusToInput()
     const meme = getMeme()
-    const elImg = new Image() // Create a new html img element
-    elImg.src = `img/${meme.selectedImgId}.jpg` // Send a network req to get that image, define the img src
-    // When the image ready draw it on the canvas
+
+    const elImg = new Image()
+    elImg.src = `img/${meme.selectedImgId}.jpg`
     elImg.onload = () => {
-        //draw the img on canvas
-        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+
+        if (gUploadedImg) gCtx.drawImage(gUploadedImg, 0, 0, gElCanvas.width, gElCanvas.height)
+        else gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+
 
         meme.lines.forEach((line, idx) => {
             const fontFamily = 'Impact'
@@ -50,6 +53,27 @@ function renderMeme() {
     }
 }
 
+function onImgInput(ev) {
+    loadImageFromInput(ev, function (img) {
+        gUploadedImg = img
+        renderMeme()
+    })
+}
+
+// Read the file from the input
+// When done send the image to the callback function
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+
+    reader.onload = function (event) {
+        let img = new Image()
+        img.src = event.target.result
+        img.onload = () => onImageReady(img)
+    }
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+
 function clearFrameFromCanvas() {
     const meme = getMeme()
     meme.selectedLineIdx = -1
@@ -75,22 +99,6 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetHeight
 }
 
-function onImgInput(ev) {
-    loadImageFromInput(ev, renderImg)
-}
-
-// Read the file from the input
-// When done send the image to the callback function
-function loadImageFromInput(ev, onImageReady) {
-    const reader = new FileReader()
-
-    reader.onload = function (event) {
-        let img = new Image()
-        img.src = event.target.result
-        img.onload = () => onImageReady(img)
-    }
-    reader.readAsDataURL(ev.target.files[0])
-}
 
 
 function onClearCanvas() {

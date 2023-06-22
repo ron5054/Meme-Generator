@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/5.jpg" type="image/x-icon">
     <title>My MEME Generator</title>
 </head>
 
@@ -14,7 +15,7 @@
             <h1 class="logo"><a href="index.html">MyMemeGenerator</a></h1>
             <nav class="main-nav-container">
                 <ul class="main-nav">
-                    <li><button class="nav-btn" onclick="onShowGallery()">gallery</button></li>
+                    <li><button class="nav-btn" onclick="onShowGallery()">Gallery</button></li>
                     <!-- <li><button class="nav-btn">dont know yet</button></li>
                     <li><button class="nav-btn">dont know yet</button></li> -->
                 </ul>
@@ -54,8 +55,10 @@
             </section>
 
             <section>
-                <!-- <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" /> -->
                 <button class="ctrl-btn" onclick="clearFrameFromCanvas()">remove frame before download</button>
+            </section>
+            <section class="upload">
+                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
             </section>
             <section class="download">
                 <a href="#" class="ctrl-btn" onclick="downloadImg(this)" download="my-img.jpg">Download</a>

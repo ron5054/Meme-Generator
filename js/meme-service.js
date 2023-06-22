@@ -8,7 +8,7 @@ var gMeme = {
             size: 30,
             color: 'white',
             x: 250,
-            y: 100
+            y: 50
         },
     ]
 }
@@ -32,7 +32,6 @@ function setFontColor(color) {
 function setFontSize(fontSize) {
     const meme = getMeme()
     meme.lines[meme.selectedLineIdx].size += fontSize
-    console.log(meme.lines[meme.selectedLineIdx].size);
 
     // if (meme.lines[gSelectedLine].size < 10 || meme.lines[gSelectedLine].size > 48) return
 }
@@ -45,7 +44,7 @@ function addLine() {
         size: 30,
         color: 'white',
         x: 250,
-        y: 350
+        y: 450
     }
     meme.lines.push(line)
     console.log(meme.lines)

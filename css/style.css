@@ -18,9 +18,10 @@
 }
 
 .main-header-container .logo a {
+    display: flex;
     color: lightseagreen;
     text-decoration: none;
-    padding: 10px;
+    align-self: center;
 }
 
 .main-nav {
@@ -34,7 +35,6 @@
     text-decoration: none;
     color: lightseagreen;
     font-size: 2em;
-    font-weight: 100;
     margin-inline-end: 30px;
     border: none;
     background: none;
@@ -88,6 +88,7 @@
     padding: 10px;
 }
 
+.file-input,
 .ctrl-btn {
     margin-block-start: 10px;
     font-size: 1.2em;
@@ -101,7 +102,6 @@
     text-decoration: none;
     padding: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
 }
 
 .txt-input {
@@ -136,9 +136,14 @@
     width: 50px;
 }
 
+.file-input {
+    max-width: 298px;
+}
+
 @media screen and (max-width:780px) {
     .meme-generator {
         flex-direction: column;
+        margin-block-start: 5px;
     }
 
     .ctrl-btn {
@@ -146,12 +151,18 @@
     }
 
     .gallery-container img {
-        height: 80px;
+        height: 120px;
         width: 80px;
     }
 
     .canvas-el {
-        width: 100vw;
+        width: 95vw;
+        height: 40vh;
+    }
+
+    .canvas-container {
+        width: 95vw;
+        height: 40vh;
     }
 
     .main-header-container .logo a {
@@ -164,6 +175,12 @@
 
     .controls {
         width: 100vw;
+    }
+
+    .square-btn {
+        height: 40px;
+        width: 40px;
+        font-size: 1em;
     }
 
 }
