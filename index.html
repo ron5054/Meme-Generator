@@ -34,26 +34,33 @@
 
         <div class="controls">
 
-            <section>
+            <section class="txt-color">
                 <input class="txt-input" type="text" id="text-input" placeholder="Write Something"
                     oninput="onhandleInput()">
                 Color <input class="color-btn" type="color" value="#ffffff" oninput="onSetFontColor(value) ">
             </section>
 
             <section>
-                <button class="ctrl-btn" onclick="onSetFontSize(5)">+ Font</button>
-                <button class="ctrl-btn" onclick="onSetFontSize(-5)">- Font</button>
-                <button class="ctrl-btn" onclick="onAddLine()">Add Line</button>
-                <button class="ctrl-btn" onclick="onSwitchLine()">Switch Line</button>
+                <button class="ctrl-btn square-btn" onclick="onSetFontSize(5)">+</button>
+                <button class="ctrl-btn square-btn" onclick="onSetFontSize(-5)">-</button>
+                <button class="ctrl-btn square-btn" onclick="onMoveLine('y',15)">↓</button>
+                <button class="ctrl-btn square-btn" onclick="onMoveLine('y',-15)">↑</button>
+                <button class="ctrl-btn square-btn" onclick="onMoveLine('x',-15)">←</button>
+                <button class="ctrl-btn square-btn" onclick="onMoveLine('x',15)">→</button>
+                <section>
+                    <button class="ctrl-btn" onclick="onAddLine()">Add Line</button>
+                    <button class="ctrl-btn" onclick="onSwitchLine()">Switch Line</button>
+                </section>
             </section>
 
             <section>
                 <!-- <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" /> -->
                 <button class="ctrl-btn" onclick="clearFrameFromCanvas()">remove frame before download</button>
-                <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
+            </section>
+            <section class="download">
+                <a href="#" class="ctrl-btn" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
                 <!-- <button class="btn" onclick="onUploadImg()"> Share on Facebook</button> -->
             </section>
-
         </div>
     </section>
 

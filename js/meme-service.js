@@ -56,3 +56,12 @@ function switchLine() {
     meme.selectedLineIdx = meme.selectedLineIdx === 0 ? 1 : 0
     console.log(meme.selectedLineIdx)
 }
+
+function moveLine(axis, num) {
+    const meme = getMeme()
+    const selectedLine = meme.lines[meme.selectedLineIdx]
+
+    if (axis === 'y') selectedLine.y += num
+    else if (axis === 'x') selectedLine.x += num
+}
+

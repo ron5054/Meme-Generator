@@ -130,6 +130,14 @@ function onhandleInput() {
 }
 
 function setFocusToInput() {
+    if (window.innerWidth < 780) {
+        return; // Returns early if screen width is less than 780 pixels
+    }
     var input = document.getElementById("text-input")
     input.focus()
+}
+
+function onMoveLine(axis, num) {
+    moveLine(axis, num)
+    renderMeme()
 }
