@@ -10,7 +10,7 @@ function renderGallery() {
     strHTMLs = ''
     const images = getImages()
     var strHTMLs = images.map(image => `
-    <img src="/img/${image.id}.jpg" alt="" onclick="onSetImg(${image.id})">`)
+    <img src="img/${image.id}.jpg" alt="" onclick="onSetImg(${image.id})">`)
 
     document.querySelector('.gallery-container').innerHTML = strHTMLs.join('')
 
