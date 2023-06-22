@@ -15,8 +15,8 @@
             <nav class="main-nav-container">
                 <ul class="main-nav">
                     <li><button class="nav-btn" onclick="onShowGallery()">gallery</button></li>
-                    <li><button class="nav-btn">dont know yet</button></li>
-                    <li><button class="nav-btn">dont know yet</button></li>
+                    <!-- <li><button class="nav-btn">dont know yet</button></li>
+                    <li><button class="nav-btn">dont know yet</button></li> -->
                 </ul>
             </nav>
         </div>
@@ -28,14 +28,15 @@
 
 
     <section class="meme-generator hide">
-
-        <canvas class="canvas-container" width="500px" height="500px"></canvas>
+        <div class="canvas-container">
+            <canvas class="canvas-el" width="500px" height="500px"></canvas>
+        </div>
 
         <div class="controls">
 
             <section>
                 <input type="text" id="text-input" placeholder="Write Something" oninput="onhandleInput()">
-                Choose Font Color <input type="color" value="#ffffff" onchange="onSetFontColor(value) ">
+                Choose Font Color <input type="color" value="#ffffff" oninput="onSetFontColor(value) ">
             </section>
 
             <section>

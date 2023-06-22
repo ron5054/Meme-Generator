@@ -20,15 +20,9 @@ function getMeme() {
 function setLineTxt(text, selectedLine) {
     const meme = getMeme()
     meme.lines[selectedLine].txt = text
-    renderMeme()
+
 }
 
-function onhandleInput() {
-    const meme = getMeme()
-    const text = document.getElementById("text-input").value
-    const selectedLine = meme.selectedLineIdx
-    setLineTxt(text, selectedLine)
-}
 
 function setFontColor(color) {
     const meme = getMeme()
@@ -39,12 +33,13 @@ function setFontSize(fontSize) {
     const meme = getMeme()
     meme.lines[meme.selectedLineIdx].size += fontSize
     console.log(meme.lines[meme.selectedLineIdx].size);
-    renderMeme()
+
     // if (meme.lines[gSelectedLine].size < 10 || meme.lines[gSelectedLine].size > 48) return
 }
 
 function addLine() {
     const meme = getMeme()
+    if (meme.lines.length >= 2) return
     const line = {
         txt: 'I sometimes eat Falafel 2',
         size: 30,
@@ -53,7 +48,7 @@ function addLine() {
         y: 350
     }
     meme.lines.push(line)
-    renderMeme()
+    console.log(meme.lines)
 }
 
 function switchLine() {

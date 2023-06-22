@@ -1,12 +1,12 @@
 * {
     box-sizing: border-box;
-    text-align: center;
+    /* text-align: center; */
 }
 
 
 .main-header {
     background-color: rgb(187, 187, 187);
-    color: aquamarine;
+    color: lightseagreen;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-family: 'Lato', sans-serif;
 
@@ -20,7 +20,7 @@
 }
 
 .main-header-container .logo a {
-    color: aquamarine;
+    color: lightseagreen;
     text-decoration: none;
 }
 
@@ -33,20 +33,30 @@
 .main-nav li button {
     margin-inline-start: 30px;
     text-decoration: none;
-    color: aquamarine;
+    color: lightseagreen;
     font-size: 2em;
     font-weight: 900;
 }
 
 .canvas-container {
     border: 1px solid black;
+    width: 500px;
+    height: 500px;
 }
 
 .gallery-container img {
     height: 200px;
     width: 200px;
     cursor: pointer;
+    border-radius: 10px;
 }
+
+.gallery-container img:hover {
+    border: 3px solid lightseagreen;
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+
 
 .meme-generator {
     display: flex;

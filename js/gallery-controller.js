@@ -20,6 +20,8 @@ function onSetImg(imageId) {
     setImg(imageId)
     document.querySelector('.gallery-container').classList.add('hide')
     document.querySelector('.meme-generator').classList.remove('hide')
+    resizeCanvas()
+    renderMeme()
 }
 
 function onShowGallery() {
