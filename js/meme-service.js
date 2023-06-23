@@ -19,26 +19,20 @@ function getMeme() {
 }
 
 function setLineTxt(text, selectedLine) {
-    const meme = getMeme()
-    meme.lines[selectedLine].txt = text
-
+    gMeme.lines[selectedLine].txt = text
 }
 
 function setFontColor(color) {
-    const meme = getMeme()
-    meme.lines[meme.selectedLineIdx].color = color
+    gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
 function setFontSize(fontSize) {
-    const meme = getMeme()
-    meme.lines[meme.selectedLineIdx].size += fontSize
-
-    // if (meme.lines[gSelectedLine].size < 10 || meme.lines[gSelectedLine].size > 48) return
+    gMeme.lines[gMeme.selectedLineIdx].size += fontSize
 }
 
+
 function addLine() {
-    const meme = getMeme()
-    if (meme.lines.length >= 2) return
+    if (gMeme.lines.length >= 3) return
     const line = {
         txt: '',
         size: 30,
@@ -46,19 +40,17 @@ function addLine() {
         x: 250,
         y: 400
     }
-    meme.lines.push(line)
-    console.log(meme.lines)
+    if (gMeme.lines.length === 2) line.y = 200
+    gMeme.lines.push(line)
 }
 
 function switchLine() {
-    const meme = getMeme()
-    meme.selectedLineIdx = meme.selectedLineIdx === 0 ? 1 : 0
-    console.log(meme.selectedLineIdx)
+    gMeme.selectedLineIdx++
+    if (gMeme.selectedLineIdx > 2) gMeme.selectedLineIdx = 0
 }
 
 function moveLine(axis, num) {
-    const meme = getMeme()
-    const selectedLine = meme.lines[meme.selectedLineIdx]
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
 
     if (axis === 'y') selectedLine.y += num
     else if (axis === 'x') selectedLine.x += num
@@ -78,9 +70,7 @@ function loadImageFromInput(ev, onImageReady) {
 }
 
 function saveMeme() {
-    const meme = getMeme()
-    savedMemes.push(meme)
-    console.log(savedMemes);
+    savedMemes.push(gMeme)
 }
 
 // Upload the image to a server, get back a URL 
@@ -114,8 +104,7 @@ function uploadImgToFacebook(imgDataUrl, onSuccess) {
 }
 
 function setSelectedLine(lineIdx) {
-    const meme = getMeme()
-    meme.selectedLineIdx = lineIdx
-    document.getElementById("text-input").value = meme.lines[lineIdx].txt
+    gMeme.selectedLineIdx = lineIdx
+    document.getElementById("text-input").value = gMeme.lines[lineIdx].txt
 }
 

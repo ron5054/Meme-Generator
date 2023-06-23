@@ -35,12 +35,11 @@ function renderMeme() {
             gCtx.fillText(line.txt, line.x, line.y)
             gCtx.strokeText(line.txt, line.x, line.y)
 
-
             if (idx === meme.selectedLineIdx) {
                 // Draw frame around the selected line
-                const frameWidth = gElCanvas.width - 20
+                const frameWidth = meme.lines[meme.selectedLineIdx].width
                 const frameHeight = fontSize + 10
-                const frameX = gElCanvas.width / 2
+                const frameX = line.x
                 const frameY = line.y - fontSize
 
                 gCtx.beginPath()
@@ -57,9 +56,9 @@ function renderMeme() {
 function measureTextBox() {
     const meme = getMeme()
     const selectedLine = meme.lines[meme.selectedLineIdx]
-    if (meme.selectedLineIdx === -1) return
+    if (meme.selectedLineIdx === -1) return //fixes bug with clearFrameFromCanvas()
     const textMeasures = gCtx.measureText(selectedLine.txt)
-    selectedLine.width = textMeasures.width + 200
+    selectedLine.width = textMeasures.width + 20
     selectedLine.height = selectedLine.size
 }
 
@@ -81,11 +80,14 @@ function clearFrameFromCanvas() {
 
 function onDownloadImg(elLink) {
     clearFrameFromCanvas()
-    setTimeout((downloadImg(elLink)), 4000);
+    setTimeout(() => {
+        downloadImg(elLink)
+    }, 2000)
 }
 
 
 function downloadImg(elLink) {
+    console.log(elLink);
     clearFrameFromCanvas()
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
@@ -122,6 +124,7 @@ function onAddLine() {
 
 function onSwitchLine() {
     const meme = getMeme()
+    if (meme.lines.length === 1) return alert('Add line first')
     switchLine()
     let selectedLine = meme.selectedLineIdx
     document.getElementById("text-input").value = meme.lines[selectedLine].txt
@@ -132,14 +135,14 @@ function onhandleInput() {
     const meme = getMeme()
     const text = document.getElementById("text-input").value
     const selectedLine = meme.selectedLineIdx
+    if (meme.selectedLineIdx === -1) return alert('Add line first')
     setLineTxt(text, selectedLine)
     renderMeme()
 }
 
 function setFocusToInput() {
-    if (window.innerWidth < 780) {
-        return; // Returns early if screen width is less than 780 pixels
-    }
+    if (window.innerWidth < 780) return // Returns early if screen width is less than 780 pixels
+
     var input = document.getElementById("text-input")
     input.focus()
 }
@@ -178,7 +181,6 @@ function onClickOnLine(ev) {
     for (var i = 0; i < meme.lines.length; i++) {
         const line = meme.lines[i]
         if (axisX > (line.x - (line.width / 2)) && axisX < (line.x + (line.width / 2)) && axisY > (line.y - line.height) && axisY < (line.y + 15)) {
-            console.log('hi');
             setSelectedLine(i)
             renderMeme()
         }
