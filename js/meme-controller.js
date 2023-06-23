@@ -22,7 +22,6 @@ function renderMeme() {
         if (gUploadedImg) gCtx.drawImage(gUploadedImg, 0, 0, gElCanvas.width, gElCanvas.height)
         else gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 
-
         meme.lines.forEach((line, idx) => {
             const fontFamily = 'Impact'
             const fontSize = line.size
@@ -47,30 +46,17 @@ function renderMeme() {
                 gCtx.lineWidth = 2
                 gCtx.stroke()
             }
-
         })
-
     }
 }
 
+
+
 function onImgInput(ev) {
-    loadImageFromInput(ev, function (img) {
+    loadImageFromInput(ev, (img) => {
         gUploadedImg = img
         renderMeme()
     })
-}
-
-// Read the file from the input
-// When done send the image to the callback function
-function loadImageFromInput(ev, onImageReady) {
-    const reader = new FileReader()
-
-    reader.onload = function (event) {
-        let img = new Image()
-        img.src = event.target.result
-        img.onload = () => onImageReady(img)
-    }
-    reader.readAsDataURL(ev.target.files[0])
 }
 
 
@@ -149,3 +135,24 @@ function onMoveLine(axis, num) {
     moveLine(axis, num)
     renderMeme()
 }
+
+function onSaveMeme() {
+    saveMeme()
+}
+
+function onUploadImgToFacebook() {
+    clearFrameFromCanvas()
+    // Gets the image from the canvas
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+
+    function onSuccess(uploadedImgUrl) {
+        // Handle some special characters
+        const url = encodeURIComponent(uploadedImgUrl)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}`)
+    }
+
+    // Send the image to the server
+    uploadImgToFacebook(imgDataUrl, onSuccess)
+}
+
+

@@ -22,6 +22,7 @@
     color: lightseagreen;
     text-decoration: none;
     align-self: center;
+    margin-inline-start: 30px;
 }
 
 .main-nav {
@@ -44,8 +45,8 @@
 
 .canvas-container {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 500px;
-    height: 500px;
+    width: 31.25em;
+    height: 31.25em;
 }
 
 .gallery-container {
@@ -160,13 +161,13 @@
     }
 
     .canvas-el {
-        width: 95vw;
-        height: 40vh;
+        width: 18.75em;
+        height: 18.75em;
     }
 
     .canvas-container {
-        width: 95vw;
-        height: 40vh;
+        width: 18.75em;
+        height: 18.75em;
     }
 
     .main-header-container .logo a {

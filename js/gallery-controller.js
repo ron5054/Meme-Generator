@@ -30,3 +30,5 @@ function onShowGallery() {
     document.querySelector('.meme-generator').classList.add('hide')
 }
 
+
+
