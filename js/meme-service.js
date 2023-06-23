@@ -9,7 +9,7 @@ var gMeme = {
             size: 30,
             color: 'white',
             x: 250,
-            y: 50
+            y: 50,
         },
     ]
 }
@@ -44,7 +44,7 @@ function addLine() {
         size: 30,
         color: 'white',
         x: 250,
-        y: 300
+        y: 400
     }
     meme.lines.push(line)
     console.log(meme.lines)
@@ -113,5 +113,9 @@ function uploadImgToFacebook(imgDataUrl, onSuccess) {
     XHR.send(formData)
 }
 
-
+function setSelectedLine(lineIdx) {
+    const meme = getMeme()
+    meme.selectedLineIdx = lineIdx
+    document.getElementById("text-input").value = meme.lines[lineIdx].txt
+}
 

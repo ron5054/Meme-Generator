@@ -22,6 +22,8 @@ function renderMeme() {
         if (gUploadedImg) gCtx.drawImage(gUploadedImg, 0, 0, gElCanvas.width, gElCanvas.height)
         else gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 
+        measureTextBox()
+
         meme.lines.forEach((line, idx) => {
             const fontFamily = 'Impact'
             const fontSize = line.size
@@ -32,6 +34,7 @@ function renderMeme() {
             gCtx.fillStyle = line.color
             gCtx.fillText(line.txt, line.x, line.y)
             gCtx.strokeText(line.txt, line.x, line.y)
+
 
             if (idx === meme.selectedLineIdx) {
                 // Draw frame around the selected line
@@ -51,6 +54,16 @@ function renderMeme() {
 }
 
 
+function measureTextBox() {
+    const meme = getMeme()
+    const selectedLine = meme.lines[meme.selectedLineIdx]
+    if (meme.selectedLineIdx === -1) return
+    const textMeasures = gCtx.measureText(selectedLine.txt)
+    selectedLine.width = textMeasures.width + 200
+    selectedLine.height = selectedLine.size
+}
+
+
 
 function onImgInput(ev) {
     loadImageFromInput(ev, (img) => {
@@ -66,16 +79,16 @@ function clearFrameFromCanvas() {
     renderMeme()
 }
 
-// function onDownloadImg(elLink) {
-//     clearFrameFromCanvas()
-//     setTimeout((downloadImg(elLink)), 4000);
-// }
+function onDownloadImg(elLink) {
+    clearFrameFromCanvas()
+    setTimeout((downloadImg(elLink)), 4000);
+}
 
 
 function downloadImg(elLink) {
+    clearFrameFromCanvas()
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
-
 }
 
 
@@ -155,4 +168,20 @@ function onUploadImgToFacebook() {
     uploadImgToFacebook(imgDataUrl, onSuccess)
 }
 
+function onClickOnLine(ev) {
+
+    const meme = getMeme()
+    const axisX = ev.offsetX
+    const axisY = ev.offsetY
+    // console.log('x', axisX);
+    // console.log('y', axisY);
+    for (var i = 0; i < meme.lines.length; i++) {
+        const line = meme.lines[i]
+        if (axisX > (line.x - (line.width / 2)) && axisX < (line.x + (line.width / 2)) && axisY > (line.y - line.height) && axisY < (line.y + 15)) {
+            console.log('hi');
+            setSelectedLine(i)
+            renderMeme()
+        }
+    }
+}
 
