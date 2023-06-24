@@ -16,9 +16,7 @@ function onInitEditor() {
     gElCanvas.addEventListener('mousedown', onLineDragStart)
     gElCanvas.addEventListener('mousemove', onLineDrag)
     gElCanvas.addEventListener('mouseup', onLineDragEnd)
-    // gElCanvas.addEventListener('touchstart', onLineDragStart)
-    // gElCanvas.addEventListener('touchmove', onLineDrag)
-    // gElCanvas.addEventListener('touchend', onLineDragEnd)
+
 }
 
 
@@ -163,8 +161,18 @@ function onMoveLine(axis, num) {
 }
 
 function onSaveMeme() {
+    let saveButton = document.querySelector(".save-btn")
+    saveButton.innerText = "Saved Meme"
+    saveButton.classList.add("s-btn")
+
+    setTimeout(function () {
+        saveButton.innerText = "Save Meme"
+        saveButton.classList.remove("s-btn")
+    }, 1200)
+
     saveMeme()
 }
+
 
 
 function onUploadImgToFacebook() {

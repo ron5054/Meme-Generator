@@ -2,7 +2,6 @@
     box-sizing: border-box;
 }
 
-
 .canvas-bg {
     position: absolute;
     background-color: black;
@@ -13,12 +12,22 @@
     z-index: -1;
 }
 
-
+.main-footer,
 .main-header {
     background-color: rgb(187, 187, 187);
     color: lightseagreen;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     font-family: 'Lato', sans-serif;
+}
+
+.main-footer {
+    position: absolute;
+    bottom: 0;
+    width: 99.5%;
+    padding: 0.5em;
+    font-size: 2em;
+    text-align: center;
+    margin-block-end: 20px;
 }
 
 
@@ -34,6 +43,11 @@
     text-decoration: none;
     align-self: center;
     margin-inline-start: 30px;
+}
+
+.lang-btn {
+    height: 40px;
+    cursor: pointer;
 }
 
 .main-nav {
@@ -55,9 +69,9 @@
 }
 
 .canvas-container {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 31.25em;
-    height: 31.25em;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    width: 500px;
+    height: 500px;
 }
 
 .saved-container,
@@ -77,6 +91,7 @@
     width: 150px;
     cursor: pointer;
     border-radius: 10px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .saved-container img:hover,
@@ -112,7 +127,7 @@
     margin-inline-end: 3px;
     border-radius: 3px;
     border: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     cursor: pointer;
     text-decoration: none;
     padding: 10px;
@@ -155,6 +170,15 @@
     max-width: 298px;
 }
 
+
+.s-btn {
+    background-color: rgb(20, 199, 20);
+    transition: transform 1s ease-out;
+    border: 1px solid black;
+    transform: scale(1.03);
+}
+
+
 @media screen and (max-width:780px) {
     .meme-generator {
         flex-direction: column;
@@ -165,26 +189,26 @@
         font-size: 2em;
     }
 
+    .saved-container,
     .gallery-container {
         width: 100vw;
     }
 
+    .saved-container img,
     .gallery-container img {
         height: 100px;
         width: 100px;
     }
 
-    .canvas-el {
-        width: 300px;
-        /* height: 18.75em; */
+    .canvas-container {
+        transform: scale(0.6);
+        /* Adjust the scaling factor as needed */
+        transform-origin: left bottom;
     }
 
-    .canvas-container {
-        width: 300px;
-    }
 
     .main-header-container .logo a {
-        font-size: 16px;
+        display: none;
     }
 
     .main-nav li button {
@@ -199,6 +223,16 @@
         height: 40px;
         width: 40px;
         font-size: 1em;
+    }
+
+
+    .main-footer {
+        display: none;
+    }
+
+    .main-nav li button {
+        margin-inline-end: 5px;
+        margin-inline-start: 5px;
     }
 
 }

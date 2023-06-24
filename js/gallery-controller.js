@@ -1,7 +1,7 @@
 'use strict'
 
-
 function onInit() {
+    doTrans()
     renderGallery()
     onInitEditor()
 }
@@ -55,8 +55,16 @@ function renderSavedMemes() {
 
     document.querySelector('.saved-container').innerHTML = strHTMLs.join('')
 
-    if (!savedMemes.length) document.querySelector('.saved-container').innerText = 'No saves yet'
+    if (!savedMemes.length) document.querySelector('.saved-container').innerText = `No saved Meme's`
     document.querySelector('.saved-container').classList.remove('hide')
     document.querySelector('.gallery-container').classList.add('hide')
     document.querySelector('.meme-generator').classList.add('hide')
+}
+
+
+function onSetLang(lang) {
+    setLang(lang)
+    doTrans()
+    if (gCurrLang === 'he') document.querySelector('.txt-input').style.direction = 'rtl'
+    else document.querySelector('.txt-input').style.direction = 'ltr'
 }

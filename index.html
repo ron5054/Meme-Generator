@@ -16,8 +16,10 @@
             <h1 class="logo"><a href="index.html">MyMemeGenerator</a></h1>
             <nav class="main-nav-container">
                 <ul class="main-nav">
-                    <li><button class="nav-btn" onclick="onShowGallery()">Gallery</button></li>
-                    <li><button class="nav-btn" onclick="renderSavedMemes()">Saved</button></li>
+                    <img class="lang-btn" src="img/en.png" alt="english" onclick="onSetLang('en')"><img class="lang-btn"
+                        src="img/he.png" alt="hebrew" onclick="onSetLang('he')">
+                    <li><button data-trans="gallery" class="nav-btn" onclick="onShowGallery()">Gallery</button></li>
+                    <li><button data-trans="savedmemes" class="nav-btn" onclick="renderSavedMemes()">Saved</button></li>
                     <li><button class="nav-btn dm-btn" onclick="onNightMode()">🌚</button></li>
                 </ul>
             </nav>
@@ -31,47 +33,53 @@
 
     <section class="meme-generator hide">
         <div class="canvas-container">
-            <canvas class="canvas-el" width="31.25em" height="31.25em" onmousedown="onClickOnLine(event)"></canvas>
+            <canvas class="canvas-el" width="500px" height="500px" onmousedown="onClickOnLine(event)"></canvas>
         </div>
 
         <div class="controls">
 
             <section class="txt-color">
-                <input class="txt-input" type="text" id="text-input" placeholder="Write Something"
+                <input data-trans="input" class="txt-input" type="text" id="text-input" placeholder="Write Something"
                     oninput="onhandleInput()">
-                Color <input class="color-btn" type="color" value="#ffffff" oninput="onSetFontColor(value) ">
+                <span data-trans="color">Color</span> <input class="color-btn" type="color" value="#ffffff"
+                    oninput="onSetFontColor(value) ">
             </section>
 
             <section>
-                <button class="ctrl-btn square-btn" onclick="onSetFontSize(5)">+</button>
-                <button class="ctrl-btn square-btn" onclick="onSetFontSize(-5)">-</button>
+                <button class="ctrl-btn square-btn" onclick="onSetFontSize(5)">A+</button>
+                <button class="ctrl-btn square-btn" onclick="onSetFontSize(-5)">A-</button>
                 <button class="ctrl-btn square-btn" onclick="onMoveLine('y',15)">↓</button>
                 <button class="ctrl-btn square-btn" onclick="onMoveLine('y',-15)">↑</button>
                 <button class="ctrl-btn square-btn" onclick="onMoveLine('x',-15)">←</button>
                 <button class="ctrl-btn square-btn" onclick="onMoveLine('x',15)">→</button>
                 <section>
-                    <button class="ctrl-btn" onclick="onAddLine()">Add Line</button>
-                    <button class="ctrl-btn" onclick="onSwitchLine()">Switch Line</button>
+                    <button data-trans="addline" class="ctrl-btn" onclick="onAddLine()">Add Line</button>
+                    <button data-trans="switchline" class="ctrl-btn" onclick="onSwitchLine()">Switch Line</button>
                 </section>
             </section>
 
             <section>
-                <button class="ctrl-btn" onclick="clearFrameFromCanvas()">remove frame before download</button>
+                <button data-trans="clearframe" class="ctrl-btn" onclick="clearFrameFromCanvas()">remove frame before
+                    download</button>
             </section>
             <section class="upload">
                 <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
             </section>
             <section class="download">
-                <a href="#" class="ctrl-btn" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
-                <button class="ctrl-btn" onclick="onSaveMeme()">Save Meme</button>
-                <button class="ctrl-btn" onclick="onUploadImgToFacebook()">Share on Facebook</button>
+                <a data-trans="download" href="#" class="ctrl-btn" onclick="downloadImg(this)"
+                    download="my-img.jpg">Download</a>
+                <button data-trans="savememe" class="ctrl-btn save-btn" onclick="onSaveMeme()">Save Meme</button>
+                <button data-trans="share" class="ctrl-btn" onclick="onUploadImgToFacebook()">Share on Facebook</button>
             </section>
         </div>
     </section>
 
-    <section class="saved-container hide"></section>
+    <section class="saved-container hide" data-trans="nosaves"></section>
+
+    <footer class="main-footer">Yaron Levy&copy;</footer>
 
     <script src="js/canvas-bg.js"></script>
+    <script src="js/i18n.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/galley-service.js"></script>
     <script src="js/meme-controller.js"></script>
