@@ -19,7 +19,6 @@ function onInitEditor() {
 
 }
 
-
 function renderMeme() {
     setFocusToInput()
     const meme = getMeme()
@@ -61,7 +60,6 @@ function renderMeme() {
     }
 }
 
-
 function measureTextBox() {
     const meme = getMeme()
     const selectedLine = meme.lines[meme.selectedLineIdx]
@@ -71,15 +69,12 @@ function measureTextBox() {
     selectedLine.height = selectedLine.size
 }
 
-
-
 function onImgInput(ev) {
     loadImageFromInput(ev, (img) => {
         gUploadedImg = img
         renderMeme()
     })
 }
-
 
 function clearFrameFromCanvas() {
     const meme = getMeme()
@@ -94,21 +89,17 @@ function clearFrameFromCanvas() {
 //     }, 2000)
 // }
 
-
 function downloadImg(elLink) {
     clearFrameFromCanvas()
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
 }
 
-
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
 }
-
-
 
 function onClearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
@@ -173,8 +164,6 @@ function onSaveMeme() {
     saveMeme()
 }
 
-
-
 function onUploadImgToFacebook() {
     clearFrameFromCanvas()
     // Gets the image from the canvas
@@ -204,7 +193,9 @@ function onClickOnLine(ev) {
         }
     }
 }
+
 /////////////////////////drag and drop/////////////////////////////
+
 function onLineDragStart(ev) {
     document.querySelector('.canvas-el').style.cursor = 'grab'
     const meme = getMeme()
@@ -225,6 +216,7 @@ function onLineDragStart(ev) {
     }
 
 }
+
 function onLineDrag(ev) {
     if (gIsDragging) {
         document.querySelector('.canvas-el').style.cursor = 'grabbing'
@@ -243,4 +235,9 @@ function onLineDrag(ev) {
 function onLineDragEnd() {
     gIsDragging = false
     document.querySelector('.canvas-el').style.cursor = 'grab'
+}
+
+function onRemoveSavedMeme(memeId) {
+    removeSavedMeme(memeId)
+    renderSavedMemes()
 }

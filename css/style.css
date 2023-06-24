@@ -81,11 +81,12 @@
     gap: 5px;
     flex-wrap: wrap;
     margin-block-start: 10px;
-    font-size: 3em;
+    /* font-size: 3em; */
     color: lightseagreen;
+    gap: 10px;
 }
 
-.saved-container img,
+
 .gallery-container img {
     height: 150px;
     width: 150px;
@@ -94,13 +95,49 @@
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
-.saved-container img:hover,
+
 .gallery-container img:hover {
     border: 3px solid lightseagreen;
     opacity: 0.8;
     transition: opacity 0.5s;
 }
 
+.saved-meme {
+    position: relative;
+    display: grid;
+    font-size: 1em;
+    border: 3px solid lightblue;
+    border-radius: 10px;
+    justify-items: center;
+    padding: 3px;
+    width: 255px;
+    margin: 0;
+    padding: 0;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background-color: lightgrey;
+    color: rgb(76, 76, 76);
+}
+
+.saved-meme:hover {
+    transform: scale(102%);
+    transition: 0.4s;
+}
+
+.saved-meme img {
+    cursor: pointer;
+    max-width: 250px;
+    border-radius: 10px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.del-btn {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    margin-block: 10px;
+    cursor: pointer;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
 
 .meme-generator {
     margin-block-start: 50px;

@@ -1,4 +1,5 @@
 'use strict'
+
 function saveToLocalStorage(key, value) {
     const json = JSON.stringify(value)
     localStorage.setItem(key, json)

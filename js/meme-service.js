@@ -8,11 +8,25 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'Your text here',
+            txt: '',
             size: 40,
             color: 'white',
             x: 250,
             y: 50,
+        },
+        {
+            txt: '',
+            size: 40,
+            color: 'white',
+            x: 250,
+            y: 200,
+        },
+        {
+            txt: '',
+            size: 40,
+            color: 'white',
+            x: 250,
+            y: 400,
         },
     ]
 }
@@ -33,7 +47,6 @@ function setFontSize(fontSize) {
     gMeme.lines[gMeme.selectedLineIdx].size += fontSize
 }
 
-
 function addLine() {
     if (gMeme.lines.length >= 3) return
     const line = {
@@ -53,7 +66,6 @@ function switchLine() {
         gMeme.selectedLineIdx = 0;
     }
 }
-
 
 function moveLine(axis, num) {
     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
@@ -82,12 +94,10 @@ function saveMeme() {
     saveToLocalStorage(STORAGE_KEY, gSavedMemes)
 }
 
-
 function getMemeById(memeId) {
     const memeObj = gSavedMemes.find(meme => meme.id === memeId)
     return memeObj
 }
-
 
 function getSavedMemes() {
     return gSavedMemes
@@ -96,7 +106,7 @@ function getSavedMemes() {
 function editMeme(memeId) {
     const editedMeme = getMemeById(memeId)
     Object.assign(gMeme, editedMeme)
-    renderMeme()
+    setTimeout(renderMeme(), 4000)
 }
 
 // Upload the image to a server, get back a URL 
@@ -134,4 +144,8 @@ function setSelectedLine(lineIdx) {
     document.getElementById("text-input").value = gMeme.lines[lineIdx].txt
 }
 
-
+function removeSavedMeme(memeId) {
+    const removedMemeIndex = gSavedMemes.findIndex(gMeme => gMeme.id === memeId)
+    if (removedMemeIndex !== -1) gSavedMemes.splice(removedMemeIndex, 1)
+    saveToLocalStorage(STORAGE_KEY, gSavedMemes)
+}  

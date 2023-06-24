@@ -38,20 +38,23 @@ function onEditMeme(memeId) {
     document.querySelector('.saved-container').classList.add('hide')
 }
 
-
 function onNightMode() {
     document.querySelector('.canvas-bg').classList.toggle('hide')
 
 }
-
 
 function renderSavedMemes() {
 
     const savedMemes = getSavedMemes()
     var strHTMLs = ''
 
-    strHTMLs = savedMemes.map(meme => `
-    <img src="img/${meme.selectedImgId}.jpg" alt="" onclick="onEditMeme('${meme.id}')">`)
+    strHTMLs = savedMemes.map(meme => `<section class="saved-meme">
+    <img src="img/${meme.selectedImgId}.jpg" onclick="onEditMeme('${meme.id}')">
+    <p>${meme.lines[0].txt}</p>
+    <p>${meme.lines[1].txt}</p>
+    <p>${meme.lines[2].txt}</p>
+    <button class="del-btn" onclick="onRemoveSavedMeme('${meme.id}')">❌</button>
+    </section>`)
 
     document.querySelector('.saved-container').innerHTML = strHTMLs.join('')
 
@@ -60,7 +63,6 @@ function renderSavedMemes() {
     document.querySelector('.gallery-container').classList.add('hide')
     document.querySelector('.meme-generator').classList.add('hide')
 }
-
 
 function onSetLang(lang) {
     setLang(lang)

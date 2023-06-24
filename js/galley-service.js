@@ -6,6 +6,7 @@ function getImages() {
     var images = gImgs
     return images
 }
+
 _createImages()
 function _createImages() {
     const images = getImages()
