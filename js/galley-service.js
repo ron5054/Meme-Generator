@@ -1,4 +1,5 @@
 'use strict'
+
 const gImgs = []
 
 function getImages() {
@@ -17,7 +18,6 @@ function _createImages() {
         }
         images.push(img)
     }
-    console.log(gImgs)
 }
 
 function setImg(imageId) {

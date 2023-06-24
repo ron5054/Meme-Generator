@@ -2,12 +2,23 @@
 let gElCanvas
 let gCtx
 let gUploadedImg = null
+//////////////////////////////////////
+let gIsDragging = false
+let gDragStartPos
+let gLineOffset
+////////////////////////////////////
 
 function onInitEditor() {
     gElCanvas = document.querySelector('.canvas-el')
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
     renderMeme()
+    gElCanvas.addEventListener('mousedown', onLineDragStart)
+    gElCanvas.addEventListener('mousemove', onLineDrag)
+    gElCanvas.addEventListener('mouseup', onLineDragEnd)
+    // gElCanvas.addEventListener('touchstart', onLineDragStart)
+    // gElCanvas.addEventListener('touchmove', onLineDrag)
+    // gElCanvas.addEventListener('touchend', onLineDragEnd)
 }
 
 
@@ -25,7 +36,7 @@ function renderMeme() {
         measureTextBox()
 
         meme.lines.forEach((line, idx) => {
-            const fontFamily = 'Impact'
+            const fontFamily = 'impact,arial'
             const fontSize = line.size
             gCtx.font = `${fontSize}px ${fontFamily}`
             gCtx.lineWidth = 2
@@ -78,16 +89,15 @@ function clearFrameFromCanvas() {
     renderMeme()
 }
 
-function onDownloadImg(elLink) {
-    clearFrameFromCanvas()
-    setTimeout(() => {
-        downloadImg(elLink)
-    }, 2000)
-}
+// function onDownloadImg(elLink) {
+//     clearFrameFromCanvas()
+//     setTimeout(() => {
+//         downloadImg(elLink)
+//     }, 2000)
+// }
 
 
 function downloadImg(elLink) {
-    console.log(elLink);
     clearFrameFromCanvas()
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
@@ -156,6 +166,7 @@ function onSaveMeme() {
     saveMeme()
 }
 
+
 function onUploadImgToFacebook() {
     clearFrameFromCanvas()
     // Gets the image from the canvas
@@ -176,8 +187,7 @@ function onClickOnLine(ev) {
     const meme = getMeme()
     const axisX = ev.offsetX
     const axisY = ev.offsetY
-    // console.log('x', axisX);
-    // console.log('y', axisY);
+
     for (var i = 0; i < meme.lines.length; i++) {
         const line = meme.lines[i]
         if (axisX > (line.x - (line.width / 2)) && axisX < (line.x + (line.width / 2)) && axisY > (line.y - line.height) && axisY < (line.y + 15)) {
@@ -186,4 +196,43 @@ function onClickOnLine(ev) {
         }
     }
 }
+/////////////////////////drag and drop/////////////////////////////
+function onLineDragStart(ev) {
+    document.querySelector('.canvas-el').style.cursor = 'grab'
+    const meme = getMeme()
+    const selectedLine = meme.lines[meme.selectedLineIdx]
 
+    if (
+        ev.offsetX > selectedLine.x - selectedLine.width / 2 &&
+        ev.offsetX < selectedLine.x + selectedLine.width / 2 &&
+        ev.offsetY > selectedLine.y - selectedLine.height &&
+        ev.offsetY < selectedLine.y
+    ) {
+        gIsDragging = true
+        gDragStartPos = { x: ev.offsetX, y: ev.offsetY }
+        gLineOffset = {
+            x: gDragStartPos.x - selectedLine.x,
+            y: gDragStartPos.y - selectedLine.y,
+        }
+    }
+
+}
+function onLineDrag(ev) {
+    if (gIsDragging) {
+        document.querySelector('.canvas-el').style.cursor = 'grabbing'
+        const meme = getMeme()
+        const selectedLine = meme.lines[meme.selectedLineIdx]
+        const newX = ev.offsetX - gLineOffset.x
+        const newY = ev.offsetY - gLineOffset.y
+
+        selectedLine.x = newX
+        selectedLine.y = newY
+
+        renderMeme()
+    }
+}
+
+function onLineDragEnd() {
+    gIsDragging = false
+    document.querySelector('.canvas-el').style.cursor = 'grab'
+}

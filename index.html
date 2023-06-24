@@ -10,14 +10,15 @@
 </head>
 
 <body onload="onInit()">
+    <canvas class="canvas-bg hide"></canvas>
     <header class="main-header full main-layout">
         <div class="main-header-container">
             <h1 class="logo"><a href="index.html">MyMemeGenerator</a></h1>
             <nav class="main-nav-container">
                 <ul class="main-nav">
                     <li><button class="nav-btn" onclick="onShowGallery()">Gallery</button></li>
-                    <!-- <li><button class="nav-btn">dont know yet</button></li>
-                    <li><button class="nav-btn">dont know yet</button></li> -->
+                    <li><button class="nav-btn" onclick="renderSavedMemes()">Saved</button></li>
+                    <li><button class="nav-btn dm-btn" onclick="onNightMode()">🌚</button></li>
                 </ul>
             </nav>
         </div>
@@ -30,7 +31,7 @@
 
     <section class="meme-generator hide">
         <div class="canvas-container">
-            <canvas class="canvas-el" width="31.25em" height="31.25em" onclick="onClickOnLine(event)"></canvas>
+            <canvas class="canvas-el" width="31.25em" height="31.25em" onmousedown="onClickOnLine(event)"></canvas>
         </div>
 
         <div class="controls">
@@ -62,12 +63,15 @@
             </section>
             <section class="download">
                 <a href="#" class="ctrl-btn" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
-                <!-- <button class="ctrl-btn" onclick="onSaveMeme()">Save Meme</button> -->
+                <button class="ctrl-btn" onclick="onSaveMeme()">Save Meme</button>
                 <button class="ctrl-btn" onclick="onUploadImgToFacebook()">Share on Facebook</button>
             </section>
         </div>
     </section>
 
+    <section class="saved-container hide"></section>
+
+    <script src="js/canvas-bg.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/galley-service.js"></script>
     <script src="js/meme-controller.js"></script>

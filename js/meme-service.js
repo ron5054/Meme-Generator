@@ -1,12 +1,15 @@
 'use strict'
-const savedMemes = []
+
+const STORAGE_KEY = 'MemesDB'
+const gSavedMemes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+
 var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
     lines: [
         {
-            txt: '',
-            size: 30,
+            txt: 'Your text here',
+            size: 40,
             color: 'white',
             x: 250,
             y: 50,
@@ -34,8 +37,8 @@ function setFontSize(fontSize) {
 function addLine() {
     if (gMeme.lines.length >= 3) return
     const line = {
-        txt: '',
-        size: 30,
+        txt: 'Your text here',
+        size: 40,
         color: 'white',
         x: 250,
         y: 400
@@ -45,9 +48,12 @@ function addLine() {
 }
 
 function switchLine() {
-    gMeme.selectedLineIdx++
-    if (gMeme.selectedLineIdx > 2) gMeme.selectedLineIdx = 0
+    gMeme.selectedLineIdx++;
+    if (gMeme.selectedLineIdx >= gMeme.lines.length) {
+        gMeme.selectedLineIdx = 0;
+    }
 }
+
 
 function moveLine(axis, num) {
     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
@@ -70,7 +76,27 @@ function loadImageFromInput(ev, onImageReady) {
 }
 
 function saveMeme() {
-    savedMemes.push(gMeme)
+    const savedMeme = JSON.parse(JSON.stringify(gMeme))
+    savedMeme.id = makeId()
+    gSavedMemes.push(savedMeme)
+    saveToLocalStorage(STORAGE_KEY, gSavedMemes)
+}
+
+
+function getMemeById(memeId) {
+    const memeObj = gSavedMemes.find(meme => meme.id === memeId)
+    return memeObj
+}
+
+
+function getSavedMemes() {
+    return gSavedMemes
+}
+
+function editMeme(memeId) {
+    const editedMeme = getMemeById(memeId)
+    Object.assign(gMeme, editedMeme)
+    renderMeme()
 }
 
 // Upload the image to a server, get back a URL 
@@ -107,4 +133,5 @@ function setSelectedLine(lineIdx) {
     gMeme.selectedLineIdx = lineIdx
     document.getElementById("text-input").value = gMeme.lines[lineIdx].txt
 }
+
 
