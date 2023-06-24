@@ -69,5 +69,5 @@ function onSetLang(lang) {
     doTrans()
     if (gCurrLang === 'he') document.querySelector('.txt-input').style.direction = 'rtl'
     else document.querySelector('.txt-input').style.direction = 'ltr'
-    // setFocusToInput()
+    setFocusToInput()
 }
