@@ -14,20 +14,6 @@ var gMeme = {
             x: 250,
             y: 50,
         },
-        {
-            txt: '',
-            size: 40,
-            color: 'white',
-            x: 250,
-            y: 200,
-        },
-        {
-            txt: '',
-            size: 40,
-            color: 'white',
-            x: 250,
-            y: 400,
-        },
     ]
 }
 
@@ -89,6 +75,8 @@ function loadImageFromInput(ev, onImageReady) {
 
 function saveMeme() {
     const savedMeme = JSON.parse(JSON.stringify(gMeme))
+    const imageURI = gElCanvas.toDataURL()
+    savedMeme.imguri = imageURI
     savedMeme.id = makeId()
     gSavedMemes.push(savedMeme)
     saveToLocalStorage(STORAGE_KEY, gSavedMemes)

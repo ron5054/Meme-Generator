@@ -160,7 +160,7 @@ function onSaveMeme() {
         saveButton.innerText = "Save Meme"
         saveButton.classList.remove("s-btn")
     }, 1200)
-
+    clearFrameFromCanvas()
     saveMeme()
 }
 

@@ -9,21 +9,19 @@
     <title>My MEME Generator</title>
 </head>
 
-<body onload="onInit()">
+<body class="main-layout" onload="onInit()">
     <canvas class="canvas-bg hide"></canvas>
-    <header class="main-header full main-layout">
-        <div class="main-header-container">
-            <h1 class="logo"><a href="index.html">MyMemeGenerator</a></h1>
-            <nav class="main-nav-container">
-                <ul class="main-nav">
-                    <img class="lang-btn" src="img/en.png" alt="english" onclick="onSetLang('en')"><img class="lang-btn"
-                        src="img/he.png" alt="hebrew" onclick="onSetLang('he')">
-                    <li><button data-trans="gallery" class="nav-btn" onclick="onShowGallery()">Gallery</button></li>
-                    <li><button data-trans="savedmemes" class="nav-btn" onclick="renderSavedMemes()">Saved</button></li>
-                    <li><button class="nav-btn dm-btn" onclick="onNightMode()">🌚</button></li>
-                </ul>
-            </nav>
-        </div>
+    <header class="main-header">
+        <h1 class="logo"><a href="index.html">MyMemeGenerator</a></h1>
+        <nav class="main-nav-container">
+            <ul class="main-nav">
+                <img class="lang-btn" src="img/en.png" alt="english" onclick="onSetLang('en')">
+                <img class="lang-btn" src="img/he.png" alt="hebrew" onclick="onSetLang('he')">
+                <li><button data-trans="gallery" class="nav-btn" onclick="onShowGallery()">Gallery</button></li>
+                <li><button data-trans="savedmemes" class="nav-btn" onclick="renderSavedMemes()">Saved</button></li>
+                <li><button class="nav-btn dm-btn" onclick="onNightMode()">🌚</button></li>
+            </ul>
+        </nav>
     </header>
 
 
@@ -45,36 +43,42 @@
                     oninput="onSetFontColor(value) ">
             </section>
 
-            <section>
-                <button class="ctrl-btn square-btn" onclick="onSetFontSize(5)">A+</button>
-                <button class="ctrl-btn square-btn" onclick="onSetFontSize(-5)">A-</button>
-                <button class="ctrl-btn square-btn" onclick="onMoveLine('y',15)">↓</button>
-                <button class="ctrl-btn square-btn" onclick="onMoveLine('y',-15)">↑</button>
-                <button class="ctrl-btn square-btn" onclick="onMoveLine('x',-15)">←</button>
-                <button class="ctrl-btn square-btn" onclick="onMoveLine('x',15)">→</button>
-                <section>
-                    <button data-trans="addline" class="ctrl-btn" onclick="onAddLine()">Add Line</button>
-                    <button data-trans="switchline" class="ctrl-btn" onclick="onSwitchLine()">Switch Line</button>
-                </section>
+            <section class="resize-btns">
+                <button class="ctrl-btn square-btn" title="Increase font" onclick="onSetFontSize(5)">A+</button>
+                <button class="ctrl-btn square-btn" title="Decrease font" onclick="onSetFontSize(-5)">A-</button>
+                <button class="ctrl-btn square-btn" title="Move down" onclick="onMoveLine('y',15)">↓</button>
+                <button class="ctrl-btn square-btn" title="Move up" onclick="onMoveLine('y',-15)">↑</button>
+                <button class="ctrl-btn square-btn" title="Move left" onclick="onMoveLine('x',-15)">←</button>
+                <button class="ctrl-btn square-btn" title="Move right" onclick="onMoveLine('x',15)">→</button>
+            </section>
+
+            <section class="mod-btns">
+                <button data-trans="addline" class="rect-btn ctrl-btn" onclick="onAddLine()">Add Line</button>
+                <button data-trans="switchline" class="rect-btn ctrl-btn" onclick="onSwitchLine()">Switch Line</button>
+                <button data-trans="savememe" class="rect-btn ctrl-btn save-btn" onclick="onSaveMeme()">Save
+                    Meme</button>
+            </section>
+
+            <section class="download">
+                <a data-trans="download" href="#" class="rect-btn db ctrl-btn"
+                    onclick="onDownloadImg(this)">Download</a>
+                <label data-trans="upload" for="file-input" class="rect-btn db upload-label">Upload File</label>
+                <input type="file" id="file-input" class="file-input btn" name="image" onchange="onImgInput(event)"
+                    accept="image/*" />
+
+                <button data-trans="fbshare" class="rect-btn db ctrl-btn" onclick="onUploadImgToFacebook()">Facebook
+                    Share</button>
             </section>
 
             <section>
-                <button data-trans="clearframe" class="ctrl-btn" onclick="clearFrameFromCanvas()">remove frame before
-                    download</button>
+                <button data-trans="clearframe" class="ctrl-btn clear-btn" onclick="clearFrameFromCanvas()">remove
+                    framebefore download</button>
             </section>
-            <section class="upload">
-                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
-            </section>
-            <section class="download">
-                <a data-trans="download" href="#" class="ctrl-btn" onclick="downloadImg(this)"
-                    download="my-img.jpg">Download</a>
-                <button data-trans="savememe" class="ctrl-btn save-btn" onclick="onSaveMeme()">Save Meme</button>
-                <button data-trans="share" class="ctrl-btn" onclick="onUploadImgToFacebook()">Share on Facebook</button>
-            </section>
+
         </div>
     </section>
 
-    <section class="saved-container hide" data-trans="nosaves"></section>
+    <section class="saved-container hide" data-trans="nosaves"><span></span></section>
 
     <footer class="main-footer">Yaron Levy&copy;</footer>
 

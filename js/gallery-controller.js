@@ -49,10 +49,7 @@ function renderSavedMemes() {
     var strHTMLs = ''
 
     strHTMLs = savedMemes.map(meme => `<section class="saved-meme">
-    <img src="img/${meme.selectedImgId}.jpg" onclick="onEditMeme('${meme.id}')">
-    <p>${meme.lines[0].txt}</p>
-    <p>${meme.lines[1].txt}</p>
-    <p>${meme.lines[2].txt}</p>
+    <img src="${meme.imguri}" onclick="onEditMeme('${meme.id}')">
     <button class="del-btn" onclick="onRemoveSavedMeme('${meme.id}')">❌</button>
     </section>`)
 
@@ -67,7 +64,12 @@ function renderSavedMemes() {
 function onSetLang(lang) {
     setLang(lang)
     doTrans()
-    if (gCurrLang === 'he') document.querySelector('.txt-input').style.direction = 'rtl'
-    else document.querySelector('.txt-input').style.direction = 'ltr'
-    setFocusToInput()
+    if (gCurrLang === 'he') {
+        document.querySelector('.txt-input').style.direction = 'rtl'
+        document.querySelector('.txt-color').style.direction = 'rtl'
+    } else {
+        document.querySelector('.txt-input').style.direction = 'ltr'
+        document.querySelector('.txt-color').style.direction = 'ltr'
+        setFocusToInput()
+    }
 }

@@ -46,7 +46,15 @@ const gTrans = {
     nosaves: {
         en: `No saved Meme's`,
         he: 'אין ממים שמורים',
-    }
+    },
+    upload: {
+        en: 'Upload File',
+        he: 'העלה קובץ'
+    },
+    fbshare: {
+        en: 'Facevook Share',
+        he: 'שתף בפייסבוק'
+    },
 }
 
 
