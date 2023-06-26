@@ -127,6 +127,7 @@ function onSwitchLine() {
     switchLine()
     let selectedLine = meme.selectedLineIdx
     document.getElementById("text-input").value = meme.lines[selectedLine].txt
+    document.getElementById("color-input").value = meme.lines[selectedLine].color
     renderMeme()
 }
 

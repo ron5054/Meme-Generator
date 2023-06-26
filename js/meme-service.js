@@ -10,7 +10,7 @@ var gMeme = {
         {
             txt: '',
             size: 40,
-            color: 'white',
+            color: '#FFFFFF',
             x: 250,
             y: 50,
         },
@@ -38,7 +38,7 @@ function addLine() {
     const line = {
         txt: 'Your text here',
         size: 40,
-        color: 'white',
+        color: '#FFFFFF',
         x: 250,
         y: 400
     }
