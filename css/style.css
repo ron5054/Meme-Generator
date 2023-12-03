@@ -319,9 +319,11 @@ body {
     .canvas-container {
         width: 100%;
         height: unset;
+        box-shadow: unset;
     }
 
     .canvas-el {
+        aspect-ratio: 1/1;
         width: 100%;
         height: unset;
     }
