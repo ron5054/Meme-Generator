@@ -52,7 +52,7 @@ const gTrans = {
         he: 'העלה קובץ'
     },
     fbshare: {
-        en: 'Facevook Share',
+        en: 'Facebook Share',
         he: 'שתף בפייסבוק'
     },
 }

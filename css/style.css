@@ -282,6 +282,10 @@ body {
         width: 100vw;
     }
 
+    .txt-color {
+        width: 100vw;
+    }
+
     .controls {
         padding: 0;
         grid-row-gap: 5px;
