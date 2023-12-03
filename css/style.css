@@ -242,6 +242,7 @@ body {
 
 .rect-btn {
     flex: 1;
+    text-align: center;
 }
 
 .file-input {
@@ -283,13 +284,25 @@ body {
     }
 
     .txt-color {
-        width: 100vw;
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 5px;
+        margin-inline-start: 5px;
+        align-items: center;
+    }
+
+    .txt-color span {
+        font-size: 12px;
+    }
+
+    .txt-input {
+        height: 100%;
+        font-size: 16px;
     }
 
     .controls {
         padding: 0;
         grid-row-gap: 5px;
-        margin-block-start: 5px;
         width: 100%;
     }
 
