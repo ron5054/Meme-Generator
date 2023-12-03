@@ -82,17 +82,15 @@ function clearFrameFromCanvas() {
     renderMeme()
 }
 
-// function onDownloadImg(elLink) {
-//     clearFrameFromCanvas()
-//     setTimeout(() => {
-//         downloadImg(elLink)
-//     }, 2000)
-// }
+function onDownloadImg(elLink) {
+    downloadImg(elLink)
+}
 
 function downloadImg(elLink) {
     clearFrameFromCanvas()
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
+    elLink.download = 'my-meme.jpg'
 }
 
 function resizeCanvas() {

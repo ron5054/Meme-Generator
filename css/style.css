@@ -2,6 +2,9 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+}
 
 .canvas-bg {
     position: absolute;
@@ -96,7 +99,6 @@
     font-size: 3em;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: lightseagreen;
-    gap: 10px;
 }
 
 .gallery-container img {
@@ -122,7 +124,6 @@
     border-radius: 10px;
     justify-items: center;
     padding: 3px;
-    /* width: 255px; */
     margin: 0;
     padding: 0;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
@@ -164,7 +165,6 @@
     display: none;
 }
 
-
 .controls {
     display: grid;
     padding: 0px 36px;
@@ -179,7 +179,8 @@
 .mod-btns,
 .resize-btns {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    gap: 5px;
 }
 
 .upload-label,
@@ -189,7 +190,6 @@
     font-size: 1.2em;
     color: aliceblue;
     background-color: rgb(120, 120, 120);
-    /* margin-inline-end: 3px; */
     border-radius: 3px;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
@@ -212,35 +212,36 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border: 1px solid lightseagreen;
     height: 65px;
-    width: 345px;
     font-size: 1.6em;
     color: gray;
     margin: 0;
-    margin-right: 5px;
 }
 
 .color-btn {
-    border-radius: 50%;
     border: none;
     height: 40px;
     width: 40px;
-    margin-block-start: 1em;
     background-color: transparent;
 }
 
 .txt-color {
     display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .txt-color span {
     font-family: 'Lato', sans-serif;
-    margin-block-start: 24px;
     color: rgb(75, 75, 75);
 }
 
 .square-btn {
-    height: 65px;
-    width: 65px;
+    flex: 1;
+    aspect-ratio: 1;
+}
+
+.rect-btn {
+    flex: 1;
 }
 
 .file-input {
@@ -258,10 +259,6 @@
     transform: scale(1.03);
 }
 
-.rect-btn {
-    width: 137px;
-    height: 65px;
-}
 
 .db {
     display: flex;
@@ -271,6 +268,10 @@
 
 
 @media screen and (max-width:780px) {
+    body {
+        overflow-x: hidden;
+    }
+
     .meme-generator {
         flex-direction: column;
         margin-block-start: 5px;
@@ -282,12 +283,18 @@
     }
 
     .controls {
-        margin-block-start: 20px;
         padding: 0;
+        grid-row-gap: 5px;
+        margin-block-start: 5px;
+        width: 100%;
     }
 
     .main-header .logo a {
         display: none;
+    }
+
+    .main-header {
+        justify-content: unset;
     }
 
     .saved-container img,
@@ -305,4 +312,21 @@
         margin-inline-start: 5px;
     }
 
+    .nav-btn {
+        font-size: 1.2rem !important;
+    }
+
+    .canvas-container {
+        width: 100%;
+        height: unset;
+    }
+
+    .canvas-el {
+        width: 100%;
+        height: unset;
+    }
+
+    .dm-btn {
+        display: none;
+    }
 }
